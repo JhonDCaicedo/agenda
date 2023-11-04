@@ -36,7 +36,7 @@ public class AgendaController {
     @GetMapping("/eliminar/{id}")
     public ModelAndView agendaTaskDelete(@PathVariable(value = "id") Long id) {
         boolean res = service.deleteByIdTask(id);
-        return new ModelAndView("redirect:/agenda/product");
+        return new ModelAndView("redirect:/agenda");
     }
 
     @GetMapping("/update/{id}")
