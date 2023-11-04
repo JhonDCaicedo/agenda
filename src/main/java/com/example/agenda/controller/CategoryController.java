@@ -1,18 +1,25 @@
 package com.example.agenda.controller;
 
 import com.example.agenda.domain.Category;
+import com.example.agenda.domain.Task;
 import com.example.agenda.service.CategoryService;
+import com.example.agenda.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+import java.util.Set;
+
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
     @Autowired
     private CategoryService service;
+    @Autowired
+    private TaskService taskService;
     @GetMapping
     public String categoryInit(Model model){
         model.addAttribute("category", new Category());
@@ -22,7 +29,12 @@ public class CategoryController {
 
     @GetMapping("/eliminar/{id}")
     public ModelAndView categoryDelete (@PathVariable(value="id") Long id){
-        boolean res = service.deleteByIdCategory(id);
+        //boolean res = service.deleteByIdCategory(id);
+        Set<Task> lt = taskService.findAllTaskCategory(service.findByIdCategory(id));
+        for (Task task : lt) {
+            taskService.deleteByIdTask(task.getId());
+        }
+        service.deleteByIdCategory(id);
         return new ModelAndView("redirect:/category");
     }
 
