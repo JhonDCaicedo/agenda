@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    <div class="w-100 h-25 d-flex justify-content-center align-items-center border-bottom bg-dark gap-2">
+        <h1 class="text-light display-5">Creación de Usuario</h1>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-9">
+                <div class="container">
+                    <div class="row text-center">
+                        <h2>Ingrese la información para crear una cuenta</h2>
+                        <hr>
+                        <form method="post" th:action="@{/createAccount}" th:object="${user}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col p-2">
+                                        <label for="name">Nombres</label>
+                                        <input th:field="*{name}" class="form-control" id="name" placeholder="Ingrese sus Nombres" required>
+                                    </div>
+                                    <div class="col p-2">
+                                        <label for="lastName">Apellidos</label>
+                                        <input th:field="*{lastName}" class="form-control" id="lastName" placeholder="Ingrese sus Apellidos" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col p-2">
+                                        <label for="age_old">Edad</label>
+                                        <input th:field="*{age_old}" class="form-control" id="age_old" placeholder="Ingrese su edad" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 p-2">
+                                        <label for="gender">Género</label>
+                                        <select th:field="*{gender}" id="gender" class="form-control" required>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                    <div class="col p-2">
+                                        <label for="email">Email</label>
+                                        <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="Ingrese su Email" required>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-4 p-2">
+                                        <label for="password">Contraseña</label>
+                                        <input th:field="*{password}"  type="password" class="form-control" id="password" placeholder="Ingrese su Contraseña" required>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-4 p-3">
+                                        <button type="submit" class="btn btn-success">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</main>
+<footer></footer>
+</body>
+</html>
