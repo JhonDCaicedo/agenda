@@ -19,4 +19,9 @@ public class UserService {
         return repository.save(user);
     }
 
+    public boolean loadUserByUserName(String email, String password){
+        Optional<User> user  = repository.findByEmail(email);
+        return user.map(value -> value.getPassword().equals(password)).orElse(false);
+    }
+
 }
